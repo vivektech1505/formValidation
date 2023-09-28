@@ -1,0 +1,152 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="text-center">Form Validation with Reactive Form</h1>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="fname" class="form-label">First Name</label>
+          <input type="text" class="form-control" placeholder="First Name" formControlName="fname"
+            [ngClass]="{error : getControl('fname')?.errors && getControl('fname')?.touched}">
+          <div *ngIf="getControl('fname')?.errors && getControl('fname')?.touched">
+            <small class="text-danger" *ngIf="getControl('fname')?.errors?.['required']">First Name is required</small>
+            <small class="text-danger" *ngIf="getControl('fname')?.errors?.['minlength']">Minimum 5 char are
+              allowed</small>
+            <small class="text-danger" *ngIf="getControl('fname')?.errors?.['maxlength']">Max 10 char are
+              allowed</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" placeholder="Last Name" formControlName="lname"
+            [ngClass]="{error : getControl('lname')?.errors && getControl('lname')?.touched}">
+          <div *ngIf="getControl('lname')?.errors && getControl('lname')?.touched">
+            <small class="text-danger" *ngIf="getControl('lname')?.errors?.['required']">Last Name is required</small>
+            <small class="text-danger" *ngIf="getControl('lname')?.errors?.['minlength']">Minimum 3 char are
+              allowed</small>
+            <small class="text-danger" *ngIf="getControl('lname')?.errors?.['maxlength']">Maximum 10 char are allowed
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Age" class="form-label">Age</label>
+          <input type="number" class="form-control" placeholder="Age" formControlName="age"
+            [ngClass]="{error : getControl('age')?.errors && getControl('age')?.touched}">
+          <div *ngIf="getControl('age')?.errors && getControl('age')?.touched">
+            <small class="text-danger" *ngIf="getControl('age')?.errors?.['required']">Age is required</small>
+            <small class="text-danger"
+              *ngIf="getControl('age')?.errors?.['min'] || getControl('age')?.errors?.['max']">Age must be 18 years to
+              60 years</small><br>
+            <small class="text-danger" *ngIf="getControl('age')?.errors?.['pattern']">Please enter a valid age</small>
+          </div>
+        </div>
+
+        <div><label>Gender</label></div>
+        <div class="form-group">
+          <input type="radio" name="gender" value="male" formControlName="gender"> male
+          <input type="radio" name="gender" value="female" formControlName="gender"> female
+          <div *ngIf="getControl('gender')?.errors && getControl('gender')?.touched">
+            <small class="text-danger" *ngIf="getControl('gender')?.errors?.['invalid']">Gender is required</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">Country : </label>
+          <select name="country" formControlName="country" class="form-control"
+            [ngClass]="{error : getControl('country')?.errors && getControl('country')?.touched}">
+            <option value="">Select</option>
+            <option value="India">India</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Uk">Uk</option>
+            <option value="Nepal">Nepal</option>
+            
+          </select>
+          <div *ngIf="getControl('country')?.errors && getControl('country')?.touched">
+            <small class="text-danger" *ngIf="getControl('country')?.errors?.['required']">country is required</small>
+         </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="mobile" class="form-label">Mobile</label>
+          <input type="text" class="form-control" placeholder="Mobile" formControlName="mobile"
+            [ngClass]="{error : getControl('mobile')?.errors && getControl('mobile')?.touched}">
+          <div *ngIf="getControl('mobile')?.errors && getControl('mobile')?.touched">
+            <small class="text-danger" *ngIf="getControl('mobile')?.errors?.['required']">Mobile number is
+              required</small>
+            <small class="text-danger" *ngIf="getControl('mobile')?.errors?.['minlength']">Minimum 10 digit is
+              required</small>
+            <small class="text-danger" *ngIf="getControl('mobile')?.errors?.['maxlength']">Maximum 10 digit are
+              required</small>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" placeholder="Email" formControlName="email"
+            [ngClass]="{error : getControl('email')?.errors && getControl('email')?.touched}">
+          <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
+            <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']">Email id is required</small>
+            <small class="text-danger" *ngIf="getControl('email')?.errors?.['maxlength']">Maximum 32 char are
+              allowed</small>
+            <small class="text-danger" *ngIf="getControl('email')?.errors?.['pattern']">Please enter a valid email
+              id</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Password" class="form-label">Password</label>
+          <input type="password" class="form-control" placeholder="Password" formControlName="password"
+            [ngClass]="{error : getControl('password')?.errors && getControl('password')?.touched}">
+          <div *ngIf="getControl('password')?.errors && getControl('password')?.touched">
+            <small class="text-danger" *ngIf="getControl('password')?.errors?.['required']">Password is required</small>
+            <small class="text-danger" *ngIf="getControl('password')?.errors?.['minlength']">Minimum 8 digit are
+              allowed</small>
+            <small class="text-danger" *ngIf="getControl('password')?.errors?.['maxlength']">Maximum 32 digit are
+              allowed</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm_password" class="form-label">confirm_password</label>
+          <input type="password" class="form-control" placeholder="confirm_password" formControlName="confirm_password"
+            [ngClass]="{error : getControl('confirm_password')?.errors && getControl('confirm_password')?.touched}">
+          <div *ngIf="getControl('confirm_password')?.errors && getControl('confirm_password')?.touched">
+            <small class="text-danger" *ngIf="getControl('confirm_password')?.errors?.['required']">Password is
+              required</small>
+            <small class="text-danger" *ngIf="getControl('confirm_password')?.errors?.['minlength']">Minimum 8 digit are
+              allowed</small>
+            <small class="text-danger" *ngIf="getControl('confirm_password')?.errors?.['maxlength']">Maximum 32 digit
+              are allowed</small>
+          </div>
+          <div *ngIf="registerForm.errors?.['passwordMismatchError'] && getControl('confirm_password')?.touched">
+            <small class="text-danger"> Passsword Mismatch</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Hobbies"> Hobbbies: </label>
+          <div *ngFor="let hobby of hobbiesArray; let i = index;">
+            <label for="hobbies">
+              <input type="checkbox" (change)="onChange($event)" class="form-check-input" [value]="hobby">
+              {{hobby}}
+            </label>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" formControlName="accept">
+            <label for="accept">I accept The Term and conditions</label>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <input type="submit" [disabled]="registerForm.invalid" class="btn btn-primary">
+        </div>
+      </form>
+    </div>
